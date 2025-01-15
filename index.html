@@ -4,107 +4,164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>demonball_hype</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-
-        body {
-            font-family: 'Fira Code', monospace;
+        body { 
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #1a1a1a;
         }
-
-        .term {
-            background-color: #1e1e1e;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            font-family: 'Fira Code', monospace;
-            overflow: hidden;
+        .card {
+            background: #242424;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
         }
-
-        .r-txt {
-            display: inline-block;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 1.25rem;
-            line-height: 1.5rem;
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            border-color: #444;
         }
-
-        @media (min-width: 640px) {
-            .r-txt {
-                font-size: 1.5rem;
-                line-height: 2rem;
-            }
+        .skill-bar-bg {
+            background: #333;
         }
-
-        @media (min-width: 768px) {
-            .r-txt {
-                font-size: 1.875rem;
-                line-height: 2.25rem;
-            }
+        .skill-bar-fill {
+            background: #444;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        @media (min-width: 1024px) {
-            .r-txt {
-                font-size: 2.25rem;
-                line-height: 2.5rem;
-            }
+        .social-link {
+            background: #242424;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: #333;
+            transform: translateY(-1px);
         }
     </style>
 </head>
-<body class="h-screen bg-gray-900 text-white flex items-center justify-center p-4">
-    <div class="term w-full max-w-4xl">
-        <pre id="header-txt" class="text-center r-txt mb-4">
-demonball_hype
-        </pre>
-        <div class="content">
-            <p class="mb-2">welcome</p>
-            <p>bio:</p>
-            <ul class="list-disc list-inside ml-4 mb-4">
-                <li>bobo & jard from evade</li>
-                <li>yes, i use gnu/linux and roblox players</li>
-            </ul>
-            <p>skills:</p>
-            <ul class="list-disc list-inside ml-4 mb-4">
-                <li>linux: 90%</li>
-                <li>bsd: 45% - 60%</li>
-                <li>roblox: 50%</li>
-                <li>something: 89.7% - 98.7%</li>
-            </ul>
-            <p>links:</p>
-            <ul class="list-disc list-inside ml-4">
-                <li><a href="https://roblox.com/users/6091402150/profile" target="_blank" class="text-blue-400 hover:underline">roblox</a></li>
-                <li><a href="https://open.spotify.com/user/31w4rqbg24pw6mn2lhldzr7mfjly" target="_blank" class="text-blue-400 hover:underline">spotify</a></li>
-                <li><a href="https://www.tiktok.com/@storm_and_love?_t=ZT-8t58ycqkrDW&_r=1" target="_blank" class="text-blue-400 hover:underline">tiktok</a></li>
-                <li><a href="https://youtube.com/@guesty_moment?si=yDa4CNjF807iPkue" target="_blank" class="text-blue-400 hover:underline">youtube</a></li>
-                <li><a href="https://discord.com/users/1166348842766180413" target="_blank" class="text-blue-400 hover:underline">discord</a></li>
-            </ul>
-        </div>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const textElem = document.getElementById('header-txt');
-            const text = textElem.innerText;
-            textElem.innerHTML = '';
+<body class="text-gray-300 min-h-screen">
+    <div class="max-w-4xl mx-auto p-6 md:p-8 relative">
+        <header class="text-center mb-16 mt-12">
+            <h1 id="rgbText" class="text-5xl md:text-6xl font-bold mb-3">demonball_hype</h1>
+            <p class="text-gray-500 text-lg tracking-wide">Linux Enthusiast</p>
+        </header>
 
-            for (let i = 0; i < text.length; i++) {
-                const span = document.createElement('span');
-                span.innerText = text[i];
-                textElem.appendChild(span);
+        <div class="grid md:grid-cols-2 gap-8">
+            <section class="card rounded-2xl p-8">
+                <h2 class="text-2xl font-semibold mb-6 text-white flex items-center">
+                    <i class="fas fa-user-circle mr-3 opacity-75"></i>Bio
+                </h2>
+                <ul class="space-y-4" id="bioList"></ul>
+            </section>
+
+            <section class="card rounded-2xl p-8">
+                <h2 class="text-2xl font-semibold mb-6 text-white flex items-center">
+                    <i class="fas fa-code mr-3 opacity-75"></i>Skills
+                </h2>
+                <div class="space-y-6" id="skillsList"></div>
+            </section>
+        </div>
+
+        <section class="mt-8 card rounded-2xl p-8">
+            <h2 class="text-2xl font-semibold mb-6 text-white flex items-center">
+                <i class="fas fa-link mr-3 opacity-75"></i>Links
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="socialLinks"></div>
+        </section>
+    </div>
+
+    <script>
+        const bioItems = [
+            { icon: 'fas fa-gamepad', text: 'Bobo & Jard from Evade' },
+            { icon: 'fab fa-linux', text: 'GNU/Linux and Roblox Player' }
+        ];
+
+        const skills = [
+            { name: 'Linux', icon: 'fab fa-linux', value: 90 },
+            { name: 'BSD', icon: 'fab fa-freebsd', value: 60 },
+            { name: 'Roblox', icon: 'fas fa-gamepad', value: 50 },
+            { name: 'Something', icon: 'fas fa-star', value: 98.7 }
+        ];
+
+        const socialLinks = [
+            { url: 'https://roblox.com/users/6091402150/profile', icon: 'fas fa-gamepad', name: 'Roblox' },
+            { url: 'https://open.spotify.com/user/31w4rqbg24pw6mn2lhldzr7mfjly', icon: 'fab fa-spotify', name: 'Spotify' },
+            { url: 'https://www.tiktok.com/@rollingsky_hype', icon: 'fab fa-tiktok', name: 'TikTok' },
+            { url: 'https://youtube.com/@guesty_moment?si=yDa4CNjF807iPkue', icon: 'fab fa-youtube', name: 'YouTube' },
+            { url: 'https://discord.com/users/1166348842766180413', icon: 'fab fa-discord', name: 'Discord' }
+        ];
+
+        function renderBio() {
+            const bioList = document.getElementById('bioList');
+            bioItems.forEach(item => {
+                bioList.innerHTML += `
+                    <li class="flex items-center bg-[#2a2a2a] rounded-lg px-4 py-3">
+                        <i class="${item.icon} mr-3 opacity-75"></i>
+                        <span>${item.text}</span>
+                    </li>
+                `;
+            });
+        }
+
+        function renderSkills() {
+            const skillsList = document.getElementById('skillsList');
+            skills.forEach(skill => {
+                skillsList.innerHTML += `
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-400"><i class="${skill.icon} mr-2"></i>${skill.name}</span>
+                            <span class="text-gray-500">${skill.value}%</span>
+                        </div>
+                        <div class="skill-bar-bg rounded-full h-1.5">
+                            <div class="skill-bar-fill h-full rounded-full" style="width: ${skill.value}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderSocialLinks() {
+            const linksContainer = document.getElementById('socialLinks');
+            socialLinks.forEach(link => {
+                linksContainer.innerHTML += `
+                    <a href="${link.url}" target="_blank" class="social-link rounded-xl p-4 text-center">
+                        <i class="${link.icon} text-2xl mb-2 opacity-75"></i>
+                        <span class="block text-sm">${link.name}</span>
+                    </a>
+                `;
+            });
+        }
+
+        function rgbEffect() {
+            const text = document.getElementById('rgbText');
+            let hue = 0;
+
+            function updateColor() {
+                text.style.color = `hsl(${hue}, 70%, 60%)`;
+                hue = (hue + 1) % 360;
+                requestAnimationFrame(updateColor);
             }
 
-            let hue = 0;
-            const updateColors = () => {
-                const spans = textElem.querySelectorAll('span');
-                spans.forEach((span, i) => {
-                    const colorHue = (hue + i * 10) % 360;
-                    span.style.color = `hsl(${colorHue}, 100%, 50%)`;
+            updateColor();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderBio();
+            renderSkills();
+            renderSocialLinks();
+            rgbEffect();
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.style.width;
+                    }
                 });
-                hue = (hue + 1) % 360;
-                requestAnimationFrame(updateColors);
-            };
-            updateColors();
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                observer.observe(bar);
+            });
         });
     </script>
 </body>
