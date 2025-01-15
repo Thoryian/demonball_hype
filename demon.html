@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demonball_hype</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        body {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .term {
+            background-color: #1e1e1e;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Fira Code', monospace;
+            overflow: hidden;
+        }
+
+        .r-txt {
+            display: inline-block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .r-txt {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .r-txt {
+                font-size: 1.875rem;
+                line-height: 2.25rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .r-txt {
+                font-size: 2.25rem;
+                line-height: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen bg-gray-900 text-white flex items-center justify-center p-4">
+    <div class="term w-full max-w-4xl">
+        <pre id="header-txt" class="text-center r-txt mb-4">
+demonball_hype
+        </pre>
+        <div class="content">
+            <p class="mb-2">welcome</p>
+            <p>bio:</p>
+            <ul class="list-disc list-inside ml-4 mb-4">
+                <li>bobo & jard from evade</li>
+                <li>yes, i use gnu/linux and roblox players</li>
+            </ul>
+            <p>skills:</p>
+            <ul class="list-disc list-inside ml-4 mb-4">
+                <li>linux: 90%</li>
+                <li>bsd: 45% - 60%</li>
+                <li>roblox: 50%</li>
+                <li>something: 89.7% - 98.7%</li>
+            </ul>
+            <p>links:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li><a href="https://roblox.com/users/6091402150/profile" target="_blank" class="text-blue-400 hover:underline">roblox</a></li>
+                <li><a href="https://open.spotify.com/user/31w4rqbg24pw6mn2lhldzr7mfjly" target="_blank" class="text-blue-400 hover:underline">spotify</a></li>
+                <li><a href="https://www.tiktok.com/@storm_and_love?_t=ZT-8t58ycqkrDW&_r=1" target="_blank" class="text-blue-400 hover:underline">tiktok</a></li>
+                <li><a href="https://youtube.com/@guesty_moment?si=yDa4CNjF807iPkue" target="_blank" class="text-blue-400 hover:underline">youtube</a></li>
+                <li><a href="https://discord.com/users/1166348842766180413" target="_blank" class="text-blue-400 hover:underline">discord</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElem = document.getElementById('header-txt');
+            const text = textElem.innerText;
+            textElem.innerHTML = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.innerText = text[i];
+                textElem.appendChild(span);
+            }
+
+            let hue = 0;
+            const updateColors = () => {
+                const spans = textElem.querySelectorAll('span');
+                spans.forEach((span, i) => {
+                    const colorHue = (hue + i * 10) % 360;
+                    span.style.color = `hsl(${colorHue}, 100%, 50%)`;
+                });
+                hue = (hue + 1) % 360;
+                requestAnimationFrame(updateColors);
+            };
+            updateColors();
+        });
+    </script>
+</body>
+</html>
