@@ -1,1 +1,192 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>demonball_hype</title><script src="https://cdn.tailwindcss.com"></script><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><style>body{font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;background:#111;color:#e5e5e5}.card{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:1rem;box-shadow:0 4px 20px rgba(0,0,0,.1)}.skill-bar-bg{background:#2a2a2a;overflow:hidden}.skill-bar-fill{background:linear-gradient(90deg,#333,#444)}.social-link{background:#1a1a1a;border:1px solid #2a2a2a;transition:background .2s ease}.social-link:hover{background:#2a2a2a}.bio-item{background:#1a1a1a;border:1px solid #2a2a2a}@media (prefers-reduced-motion:reduce){.skill-bar-fill{transition:none}}</style></head><body class="min-h-screen p-4"><div class="max-w-4xl mx-auto p-4"><header class="text-center mb-12 mt-8"><h1 id="rgbText" class="text-6xl font-bold mb-3">Demon</h1><p class="text-gray-400 text-lg">Linux Enthusiast</p></header><div class="grid gap-6 md:grid-cols-2"><section class="card p-6"><h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3"><i class="fas fa-user-circle opacity-80"></i>Bio</h2><ul class="space-y-4" id="bioList"></ul></section><section class="card p-6"><h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3"><i class="fas fa-code opacity-80"></i>Skills</h2><div class="space-y-6" id="skillsList"></div></section></div><section class="mt-6 card p-6"><h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3"><i class="fas fa-link opacity-80"></i>Links</h2><div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="socialLinks"></div></section></div><script>const b=[{icon:"fas fa-gamepad",text:"Bobo & Jard from Evade"},{icon:"fab fa-linux",text:"GNU/Linux and Roblox Player"}],s=[{name:"Linux",icon:"fab fa-linux",value:90},{name:"BSD",icon:"fab fa-freebsd",value:60},{name:"Roblox",icon:"fas fa-gamepad",value:50},{name:"Something",icon:"fas fa-star",value:98.7}],l=[{url:"https://roblox.com/users/6091402150/profile",icon:"fas fa-gamepad",name:"Roblox"},{url:"https://open.spotify.com/user/31w4rqbg24pw6mn2lhldzr7mfjly",icon:"fab fa-spotify",name:"Spotify"},{url:"https://www.tiktok.com/@rollingsky_hype",icon:"fab fa-tiktok",name:"TikTok"},{url:"https://youtube.com/@guesty_moment?si=yDa4CNjF807iPkue",icon:"fab fa-youtube",name:"YouTube"},{url:"https://discord.com/users/1166348842766180413",icon:"fab fa-discord",name:"Discord"}];function i(){const e=document.getElementById("bioList");b.forEach(t=>{e.innerHTML+=`<li class="bio-item flex items-center rounded-lg px-4 py-3"><i class="${t.icon} mr-3 opacity-80"></i><span>${t.text}</span></li>`})}function n(){const e=document.getElementById("skillsList");s.forEach(t=>{e.innerHTML+=`<div><div class="flex justify-between mb-2"><span class="text-gray-300"><i class="${t.icon} mr-2"></i>${t.name}</span><span class="text-gray-400">${t.value}%</span></div><div class="skill-bar-bg rounded-full h-2"><div class="skill-bar-fill h-full rounded-full" style="width:${t.value}%"></div></div></div>`})}function a(){const e=document.getElementById("socialLinks");l.forEach(t=>{e.innerHTML+=`<a href="${t.url}" target="_blank" rel="noopener noreferrer" class="social-link rounded-xl p-4 text-center"><i class="${t.icon} text-2xl mb-2 opacity-80"></i><span class="block text-sm">${t.name}</span></a>`})}function r(){let e=0;function t(){document.getElementById("rgbText").style.color=`hsl(${e},70%,60%)`,e=(e+1)%360,requestAnimationFrame(t)}window.matchMedia("(prefers-reduced-motion: reduce)").matches||t()}document.addEventListener("DOMContentLoaded",()=>{i(),n(),a(),r()});</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>demonball_hype</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+body {
+  font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  background: #111;
+  color: #e5e5e5;
+  overflow-x: hidden;
+}
+.card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  scale: 0.95;
+}
+.skill-bar-bg {
+  background: #2a2a2a;
+  overflow: hidden;
+}
+.skill-bar-fill {
+  background: linear-gradient(90deg,#333,#444);
+  width: 0;
+}
+.social-link {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  opacity: 0;
+  scale: 0.8;
+}
+.social-link:hover {
+  background: #2a2a2a;
+}
+.bio-item {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+}
+.dev-watermark {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: 0.875rem;
+  opacity: 0;
+}
+.title-text {
+  opacity: 0;
+  scale: 1.2;
+}
+</style>
+</head>
+<body class="min-h-screen p-4">
+<div class="max-w-4xl mx-auto p-4">
+<header class="text-center mb-12 mt-8">
+<h1 id="mainTitle" class="text-6xl font-bold mb-3 title-text">Demon</h1>
+<p class="text-gray-400 text-lg title-text">Linux Enthusiast</p>
+</header>
+<div class="grid gap-6 md:grid-cols-2">
+<section class="card p-6">
+<h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3">
+<i class="fas fa-user-circle opacity-80"></i>Bio
+</h2>
+<ul class="space-y-4" id="bioList"></ul>
+</section>
+<section class="card p-6">
+<h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3">
+<i class="fas fa-code opacity-80"></i>Skills
+</h2>
+<div class="space-y-6" id="skillsList"></div>
+</section>
+</div>
+<section class="mt-6 card p-6">
+<h2 class="text-2xl font-semibold mb-6 text-white flex items-center gap-3">
+<i class="fas fa-link opacity-80"></i>Links
+</h2>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="socialLinks"></div>
+</section>
+</div>
+<a href="https://oncemiri.net/" target="_blank" rel="noopener noreferrer" class="dev-watermark text-gray-400 hover:text-gray-200">
+<i class="fas fa-code mr-2"></i>Dev
+</a>
+<script>
+const b=[{icon:"fas fa-gamepad",text:"Bobo & Jard from Evade"},{icon:"fab fa-linux",text:"GNU/Linux and Roblox Player"}],s=[{name:"Linux",icon:"fab fa-linux",value:90},{name:"BSD",icon:"fab fa-freebsd",value:60},{name:"Roblox",icon:"fas fa-gamepad",value:50},{name:"Something",icon:"fas fa-star",value:98.7}],l=[{url:"https://roblox.com/users/6091402150/profile",icon:"fas fa-gamepad",name:"Roblox"},{url:"https://open.spotify.com/user/31w4rqbg24pw6mn2lhldzr7mfjly",icon:"fab fa-spotify",name:"Spotify"},{url:"https://www.tiktok.com/@rollingsky_hype",icon:"fab fa-tiktok",name:"TikTok"},{url:"https://youtube.com/@guesty_moment?si=yDa4CNjF807iPkue",icon:"fab fa-youtube",name:"YouTube"},{url:"https://discord.com/users/1166348842766180413",icon:"fab fa-discord",name:"Discord"}];
+
+function initAnimations() {
+    const tl = gsap.timeline({defaults: {ease: "elastic.out(1, 0.8)"}});
+    
+    tl.to(".title-text", {
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "back.out(1.7)"
+    })
+    .to(".card", {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: "back.out(1.4)",
+    }, "-=0.5");
+
+    gsap.to(".dev-watermark", {
+        opacity: 0.6,
+        duration: 1,
+        delay: 1.5,
+        ease: "power2.out"
+    });
+
+    const socialLinks = document.querySelectorAll(".social-link");
+    socialLinks.forEach((link, i) => {
+        gsap.to(link, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            delay: 1 + (i * 0.1),
+            ease: "back.out(1.7)"
+        });
+
+        link.addEventListener("mouseenter", () => {
+            gsap.to(link, {
+                scale: 1.1,
+                rotation: 5,
+                duration: 0.3,
+                ease: "back.out(2)"
+            });
+        });
+
+        link.addEventListener("mouseleave", () => {
+            gsap.to(link, {
+                scale: 1,
+                rotation: 0,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+        });
+    });
+}
+
+function i(){const e=document.getElementById("bioList");b.forEach(t=>{e.innerHTML+=`<li class="bio-item flex items-center rounded-lg px-4 py-3"><i class="${t.icon} mr-3 opacity-80"></i><span>${t.text}</span></li>`})}
+
+function n(){
+    const e=document.getElementById("skillsList");
+    s.forEach(t=>{
+        e.innerHTML+=`<div><div class="flex justify-between mb-2"><span class="text-gray-300"><i class="${t.icon} mr-2"></i>${t.name}</span><span class="text-gray-400">${t.value}%</span></div><div class="skill-bar-bg rounded-full h-2"><div class="skill-bar-fill h-full rounded-full"></div></div></div>`;
+    });
+    
+    const bars = e.querySelectorAll(".skill-bar-fill");
+    bars.forEach((bar, index) => {
+        gsap.to(bar, {
+            width: `${s[index].value}%`,
+            duration: 1.5,
+            delay: 1.5 + (index * 0.2),
+            ease: "power4.out"
+        });
+    });
+}
+
+function a(){const e=document.getElementById("socialLinks");l.forEach(t=>{e.innerHTML+=`<a href="${t.url}" target="_blank" rel="noopener noreferrer" class="social-link rounded-xl p-4 text-center"><i class="${t.icon} text-2xl mb-2 opacity-80"></i><span class="block text-sm">${t.name}</span></a>`})}
+
+function initTitleEffect() {
+    const title = document.getElementById('mainTitle');
+    let hue = 0;
+    
+    gsap.to({}, {
+        duration: 0.01,
+        repeat: -1,
+        onRepeat: () => {
+            hue = (hue + 1) % 360;
+            title.style.color = `hsl(${hue}, 70%, 60%)`;
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+    i();
+    n();
+    a();
+    initAnimations();
+    initTitleEffect();
+});</script>
+</body>
+</html>
